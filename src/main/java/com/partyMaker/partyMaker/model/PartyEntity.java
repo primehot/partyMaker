@@ -1,8 +1,8 @@
 package com.partyMaker.partyMaker.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class PartyEntity {
@@ -13,7 +13,8 @@ public class PartyEntity {
     @ManyToOne
     private OrganizerEntity organizer;
 
-    private Collection<UserEntity> users;
+    @ManyToMany
+    private List<UserEntity> users;
 
     @Enumerated(EnumType.STRING)
     private PartyType partyType;
@@ -44,11 +45,11 @@ public class PartyEntity {
         this.organizer = organizer;
     }
 
-    public Collection<UserEntity> getUsers() {
+    public List<UserEntity> getUsers() {
         return users;
     }
 
-    public void setUsers(Collection<UserEntity> users) {
+    public void setUsers(List<UserEntity> users) {
         this.users = users;
     }
 

@@ -1,8 +1,13 @@
 package com.partyMaker.partyMaker.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class UserEntity {
-
-
+    @Id
+    @GeneratedValue
     private Integer id;
     private String name;
 
