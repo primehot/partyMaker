@@ -1,31 +1,19 @@
-package com.partyMaker.partyMaker.model;
+package com.partyMaker.partyMaker.dto;
 
-import javax.persistence.*;
+
 import java.util.Collection;
 import java.util.Date;
 
-@Entity
-public class PartyEntity {
+public class PartyDTO {
 
-    @Id
-    @GeneratedValue
     private Integer id;
-    @ManyToOne
-    private OrganizerEntity organizer;
-
-    private Collection<UserEntity> users;
-
-    @Enumerated(EnumType.STRING)
-    private PartyType partyType;
-
+    private Integer organizerId;
+    private Collection<Integer> usersId;
+    private Byte partyType;
     private Double ticketPrice;
-
     private String description;
-    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-
     private Integer attendersLimit;
-
     private String hashtagBox;
 
     public Integer getId() {
@@ -36,27 +24,27 @@ public class PartyEntity {
         this.id = id;
     }
 
-    public OrganizerEntity getOrganizer() {
-        return organizer;
+    public Integer getOrganizerId() {
+        return organizerId;
     }
 
-    public void setOrganizer(OrganizerEntity organizer) {
-        this.organizer = organizer;
+    public void setOrganizerId(Integer organizerId) {
+        this.organizerId = organizerId;
     }
 
-    public Collection<UserEntity> getUsers() {
-        return users;
+    public Collection<Integer> getUsersId() {
+        return usersId;
     }
 
-    public void setUsers(Collection<UserEntity> users) {
-        this.users = users;
+    public void setUsersId(Collection<Integer> usersId) {
+        this.usersId = usersId;
     }
 
-    public PartyType getPartyType() {
+    public Byte getPartyType() {
         return partyType;
     }
 
-    public void setPartyType(PartyType partyType) {
+    public void setPartyType(Byte partyType) {
         this.partyType = partyType;
     }
 

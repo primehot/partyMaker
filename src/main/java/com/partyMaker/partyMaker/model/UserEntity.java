@@ -2,6 +2,7 @@ package com.partyMaker.partyMaker.model;
 
 public class UserEntity {
 
+
     private Integer id;
     private String name;
 
