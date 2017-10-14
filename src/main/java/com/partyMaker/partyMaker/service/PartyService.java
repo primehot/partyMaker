@@ -1,15 +1,13 @@
 package com.partyMaker.partyMaker.service;
 
+import com.partyMaker.partyMaker.dto.PartyDTO;
+
+import java.util.Optional;
+
 public class PartyService {
 
-//    private final BookmarkRepository bookmarkRepository;
-//
-//    private final AccountRepository accountRepository;
-//
-//    @Autowired
-//    BookmarkRestController(BookmarkRepository bookmarkRepository,
-//                           AccountRepository accountRepository) {
-//        this.bookmarkRepository = bookmarkRepository;
-//        this.accountRepository = accountRepository;
-//    }
+    public Optional<Integer> createParty(PartyDTO partyInfo) {
+
+        return Optional.empty();
+    }
 }
