@@ -11,23 +11,26 @@ public class PartyEntity {
     @GeneratedValue
     private Integer id;
     @ManyToOne
-    private OrganizerEntity organizer;
-
+    private UserEntity organizer;
     @ManyToMany
     private List<UserEntity> users;
-
     @Enumerated(EnumType.STRING)
     private PartyType partyType;
-
-    private Double ticketPrice;
-
     private String description;
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-
-    private Integer attendersLimit;
+    @OneToMany
+    private List<TicketEntity> tickets;
 
     private String hashtagBox;
+
+    public List<TicketEntity> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<TicketEntity> tickets) {
+        this.tickets = tickets;
+    }
 
     public Integer getId() {
         return id;
@@ -37,11 +40,11 @@ public class PartyEntity {
         this.id = id;
     }
 
-    public OrganizerEntity getOrganizer() {
+    public UserEntity getOrganizer() {
         return organizer;
     }
 
-    public void setOrganizer(OrganizerEntity organizer) {
+    public void setOrganizer(UserEntity organizer) {
         this.organizer = organizer;
     }
 
@@ -61,14 +64,6 @@ public class PartyEntity {
         this.partyType = partyType;
     }
 
-    public Double getTicketPrice() {
-        return ticketPrice;
-    }
-
-    public void setTicketPrice(Double ticketPrice) {
-        this.ticketPrice = ticketPrice;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -83,14 +78,6 @@ public class PartyEntity {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Integer getAttendersLimit() {
-        return attendersLimit;
-    }
-
-    public void setAttendersLimit(Integer attendersLimit) {
-        this.attendersLimit = attendersLimit;
     }
 
     public String getHashtagBox() {
