@@ -1,6 +1,8 @@
 package com.partyMaker.partyMaker.dto;
 
 
+import com.partyMaker.partyMaker.model.PartyType;
+
 import java.util.Collection;
 import java.util.Date;
 
@@ -9,7 +11,7 @@ public class PartyDTO {
     private Integer id;
     private Integer organizerId;
     private Collection<Integer> usersId;
-    private Byte partyType;
+    private PartyType partyType;
     private Double ticketPrice;
     private String description;
     private Date date;
@@ -40,11 +42,11 @@ public class PartyDTO {
         this.usersId = usersId;
     }
 
-    public Byte getPartyType() {
+    public PartyType getPartyType() {
         return partyType;
     }
 
-    public void setPartyType(Byte partyType) {
+    public void setPartyType(PartyType partyType) {
         this.partyType = partyType;
     }
 

@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/users")
+@RestController
 public class PartyUserRestController {
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(path = "/users", method = RequestMethod.GET)
     private ResponseEntity getUsers() {
         return new ResponseEntity(HttpStatus.OK);
     }
