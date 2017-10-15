@@ -9,6 +9,7 @@ import com.partyMaker.partyMaker.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -37,13 +38,15 @@ public class PartyService {
         return partyEntity.getId();
     }
 
-    private void generateTickets(Integer attendersLimit, Double price, PartyEntity partyEntity) {
-        for(int i = 0; i < attendersLimit; i++) {
+    public List<TicketEntity> generateTickets(Integer attendersLimit, Double price, PartyEntity partyEntity) {
+        for (int i = 0; i < attendersLimit; i++) {
             TicketEntity ticket = new TicketEntity();
             ticket.setParty(partyEntity);
             ticket.setPrice(price);
             ticket.setQrCode(UUID.randomUUID().toString());
+            partyEntity.getTickets().add(ticket);
             ticketRepository.save(ticket);
         }
+        return ticketRepository.findAll();
     }
 }
