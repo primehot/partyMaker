@@ -3,6 +3,7 @@ package com.partyMaker.partyMaker.service;
 import com.partyMaker.partyMaker.dto.PartyDTO;
 import com.partyMaker.partyMaker.model.PartyEntity;
 import com.partyMaker.partyMaker.model.TicketEntity;
+import com.partyMaker.partyMaker.model.UserEntity;
 import com.partyMaker.partyMaker.repository.PartyRepository;
 import com.partyMaker.partyMaker.repository.TicketRepository;
 import com.partyMaker.partyMaker.repository.UserRepository;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
+
+import static com.partyMaker.partyMaker.service.OperationProgressDescription.*;
 
 @Component
 public class PartyService {
@@ -48,5 +51,25 @@ public class PartyService {
             ticketRepository.save(ticket);
         }
         return ticketRepository.findAll();
+    }
+
+    public OperationProgressDescription buyTicket(Integer usedId, Integer partyId) {
+        UserEntity user = userRepository.findById(usedId);
+        if(user == null) {
+            return USER_ISSUE;
+        }
+        PartyEntity party = partyRepository.findById(partyId);
+        if(party == null) {
+            return PARTY_ISSUE;
+        }
+        if(party.getTickets().isEmpty()) {
+            return LIMIT_ISSUE;
+        }
+        TicketEntity ticket = party.getTickets().get(0);
+
+        user.getParties().add(party);
+        user.getTickets().add(ticket);
+
+        return OK;
     }
 }
