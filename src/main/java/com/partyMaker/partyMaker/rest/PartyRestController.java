@@ -27,7 +27,7 @@ public class PartyRestController {
     }
 
     @RequestMapping(value = "/parties")
-    private ResponseEntity getParties(@RequestBody PartyDTO partyInfo) {
+    private ResponseEntity getParties() {
         return new ResponseEntity<>(new Gson().toJson(partyRepository.findAll()),HttpStatus.OK);
     }
 
