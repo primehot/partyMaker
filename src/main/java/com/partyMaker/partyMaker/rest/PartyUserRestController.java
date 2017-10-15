@@ -27,8 +27,8 @@ public class PartyUserRestController {
     }
 
     @RequestMapping(path = "/{userName}", method = RequestMethod.GET)
-    private ResponseEntity getUserByName(@PathVariable Integer userName) {
-        return new ResponseEntity<>(new Gson().toJson(userRepository.findById(userName)), HttpStatus.OK);
+    private ResponseEntity getUserByName(@PathVariable String userName) {
+        return new ResponseEntity<>(new Gson().toJson(userRepository.findByName(userName)), HttpStatus.OK);
     }
 
 }
