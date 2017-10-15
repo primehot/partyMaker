@@ -21,6 +21,16 @@ public class PartyEntity extends AbstractEntity {
     @OneToMany
     private List<TicketEntity> tickets;
     private String hashtagBox;
+    @ManyToOne
+    private LocationEntity location;
+
+    public LocationEntity getLocation() {
+        return location;
+    }
+
+    public void setLocation(LocationEntity location) {
+        this.location = location;
+    }
 
     public List<TicketEntity> getTickets() {
         return tickets;

@@ -1,10 +1,12 @@
 package com.partyMaker.partyMaker;
 
 import com.partyMaker.partyMaker.model.CompanyEntity;
+import com.partyMaker.partyMaker.model.LocationEntity;
 import com.partyMaker.partyMaker.model.UserEntity;
 import com.partyMaker.partyMaker.model.types.CompanyType;
 import com.partyMaker.partyMaker.model.types.UserType;
 import com.partyMaker.partyMaker.repository.CompanyRepository;
+import com.partyMaker.partyMaker.repository.LocationRepository;
 import com.partyMaker.partyMaker.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,12 +26,12 @@ public class PartyMakerApplication {
 
 
 	@Bean
-	public CommandLineRunner init(UserRepository userRepository,
-								   CompanyRepository companyRepository) {
+	public CommandLineRunner init(UserRepository userRepository, CompanyRepository companyRepository, LocationRepository locationRepository) {
 		return (evt) -> {
 			generateUsers(userRepository);
 			generateOrganizers(userRepository);
 			generateCompanies(companyRepository);
+			generateLocation(locationRepository);
 		};
 	}
 
@@ -72,5 +74,19 @@ public class PartyMakerApplication {
 					companyRepository.save(c);
 				}
 		);
+	}
+
+	private void generateLocation(LocationRepository locationRepository) {
+		LocationEntity szewska = new LocationEntity();
+		szewska.setAttendersLimit(200);
+		szewska.setGeoLocation("51.1109220 17.0350210");
+		szewska.setAddress("ul. Szewska 1, Wroclaw");
+		locationRepository.save(szewska);
+
+		LocationEntity kuznicza = new LocationEntity();
+		kuznicza.setAttendersLimit(100);
+		kuznicza.setGeoLocation("51.1118580 17.0341073");
+		kuznicza.setAddress("ul. Kuznicza 1, Wroclaw");
+		locationRepository.save(kuznicza);
 	}
 }
