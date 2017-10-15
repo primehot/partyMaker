@@ -5,11 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class PartyEntity {
+public class PartyEntity extends AbstractEntity {
 
-    @Id
-    @GeneratedValue
-    private Integer id;
     @ManyToOne
     private UserEntity organizer;
     @ManyToMany
@@ -21,7 +18,6 @@ public class PartyEntity {
     private Date date;
     @OneToMany
     private List<TicketEntity> tickets;
-
     private String hashtagBox;
 
     public List<TicketEntity> getTickets() {
@@ -30,14 +26,6 @@ public class PartyEntity {
 
     public void setTickets(List<TicketEntity> tickets) {
         this.tickets = tickets;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public UserEntity getOrganizer() {
