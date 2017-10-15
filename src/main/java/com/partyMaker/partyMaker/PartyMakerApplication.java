@@ -24,7 +24,6 @@ public class PartyMakerApplication {
 		SpringApplication.run(PartyMakerApplication.class, args);
 	}
 
-
 	@Bean
 	public CommandLineRunner init(UserRepository userRepository, CompanyRepository companyRepository, LocationRepository locationRepository) {
 		return (evt) -> {
