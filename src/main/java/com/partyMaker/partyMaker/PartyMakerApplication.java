@@ -24,7 +24,7 @@ public class PartyMakerApplication {
 
 
 	@Bean
-	private CommandLineRunner init(UserRepository userRepository,
+	public CommandLineRunner init(UserRepository userRepository,
 								   CompanyRepository companyRepository) {
 		return (evt) -> {
 			generateUsers(userRepository);
