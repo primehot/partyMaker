@@ -2,6 +2,7 @@ package com.partyMaker.partyMaker.rest;
 
 import com.google.gson.Gson;
 import com.partyMaker.partyMaker.dto.PartyDTO;
+import com.partyMaker.partyMaker.dto.PartyFilter;
 import com.partyMaker.partyMaker.model.PartyEntity;
 import com.partyMaker.partyMaker.model.types.PartyType;
 import com.partyMaker.partyMaker.repository.PartyRepository;
@@ -12,7 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Date;
 import java.util.stream.Collectors;
+
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -34,12 +37,13 @@ public class PartyRestController {
         return new ResponseEntity<>(new Gson().toJson(partyRepository.findAll()), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/getFilteredParties/{partyType}")
-    private ResponseEntity getFilteredParties(@PathVariable PartyType partyType) {
+    @RequestMapping(value = "/getFilteredParties", method = RequestMethod.POST)
+    private ResponseEntity getFilteredParties(@RequestBody PartyFilter filter) {
         List<PartyEntity> items = partyRepository
                 .findAll()
                 .stream()
-                .filter(item -> item.getPartyType() == partyType)
+                .filter(item -> item.getPartyType() == filter.getPartyType())
+                .filter(item -> filter.getDate().before(item.getDate()))
                 .collect(Collectors.toList());
 
         return new ResponseEntity<>(new Gson().toJson(items), HttpStatus.OK);
