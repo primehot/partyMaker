@@ -1,5 +1,7 @@
 package com.partyMaker.partyMaker.model;
 
+import com.partyMaker.partyMaker.model.types.PartyType;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;

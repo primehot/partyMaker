@@ -1,7 +1,7 @@
 package com.partyMaker.partyMaker.dto;
 
 
-import com.partyMaker.partyMaker.model.PartyType;
+import com.partyMaker.partyMaker.model.types.PartyType;
 
 import java.util.Collection;
 import java.util.Date;

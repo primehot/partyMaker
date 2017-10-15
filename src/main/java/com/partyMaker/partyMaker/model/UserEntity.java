@@ -1,5 +1,7 @@
 package com.partyMaker.partyMaker.model;
 
+import com.partyMaker.partyMaker.model.types.UserType;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,6 +13,8 @@ public class UserEntity extends AbstractEntity {
     private UserType userType;
     @ManyToMany
     private List<PartyEntity> parties;
+    @OneToMany
+    private List<TicketEntity> tickets;
 
     public UserType getUserType() {
         return userType;
@@ -34,5 +38,13 @@ public class UserEntity extends AbstractEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<TicketEntity> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<TicketEntity> tickets) {
+        this.tickets = tickets;
     }
 }
