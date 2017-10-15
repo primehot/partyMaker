@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class PartyDTO {
 
-    private Integer id;
     private Integer organizerId;
     private Collection<Integer> usersId;
     private PartyType partyType;
@@ -17,13 +16,14 @@ public class PartyDTO {
     private Date date;
     private Integer attendersLimit;
     private String hashtagBox;
+    private Integer locationId;
 
-    public Integer getId() {
-        return id;
+    public Integer getLocationId() {
+        return locationId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setLocationId(Integer locationId) {
+        this.locationId = locationId;
     }
 
     public Integer getOrganizerId() {
