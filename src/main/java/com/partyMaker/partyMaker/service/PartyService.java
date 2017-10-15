@@ -9,6 +9,8 @@ import com.partyMaker.partyMaker.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class PartyService {
 
@@ -40,6 +42,7 @@ public class PartyService {
             TicketEntity ticket = new TicketEntity();
             ticket.setParty(partyEntity);
             ticket.setPrice(price);
+            ticket.setQrCode(UUID.randomUUID().toString());
             ticketRepository.save(ticket);
         }
     }
