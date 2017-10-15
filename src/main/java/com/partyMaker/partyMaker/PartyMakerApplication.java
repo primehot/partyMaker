@@ -9,6 +9,7 @@ import com.partyMaker.partyMaker.model.types.PartyType;
 import com.partyMaker.partyMaker.model.types.UserType;
 import com.partyMaker.partyMaker.repository.CompanyRepository;
 import com.partyMaker.partyMaker.repository.PartyRepository;
+import com.partyMaker.partyMaker.repository.LocationRepository;
 import com.partyMaker.partyMaker.repository.UserRepository;
 import com.partyMaker.partyMaker.service.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +36,15 @@ public class PartyMakerApplication {
 	@Bean
 	public CommandLineRunner init(UserRepository userRepository,
 								  CompanyRepository companyRepository,
-								  PartyRepository partyRepository) {
+								  PartyRepository partyRepository,
+                                  LocationRepository locationRepository) {
+
 		return (evt) -> {
 			generateUsers(userRepository);
 			generateOrganizers(userRepository);
 			generateCompanies(companyRepository);
 			generateParties(partyRepository, userRepository);
+			generateLocation(locationRepository);
 		};
 	}
 
@@ -106,5 +110,19 @@ public class PartyMakerApplication {
 					companyRepository.save(c);
 				}
 		);
+	}
+
+	private void generateLocation(LocationRepository locationRepository) {
+		LocationEntity szewska = new LocationEntity();
+		szewska.setAttendersLimit(200);
+		szewska.setGeoLocation("51.1109220 17.0350210");
+		szewska.setAddress("ul. Szewska 1, Wroclaw");
+		locationRepository.save(szewska);
+
+		LocationEntity kuznicza = new LocationEntity();
+		kuznicza.setAttendersLimit(100);
+		kuznicza.setGeoLocation("51.1118580 17.0341073");
+		kuznicza.setAddress("ul. Kuznicza 1, Wroclaw");
+		locationRepository.save(kuznicza);
 	}
 }
