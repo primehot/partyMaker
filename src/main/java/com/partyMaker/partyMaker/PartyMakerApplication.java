@@ -53,28 +53,26 @@ public class PartyMakerApplication {
             generateUsers();
 			generateOrganizers();
             generateCompanies();
+			generateLocation();
             generateParties();
-            generateLocation();
 		};
 	}
 
 	private void generateParties() {
-		Arrays.asList("Jan, Ben, Ola, Agnieszka".split(",")).forEach(
-				name -> {
-					PartyEntity p = new PartyEntity();
-					p.setPartyType(PartyType.TYPICAL);
-					p.setHashtagBox("#homeparty");
-					p.setDate(Date.from(Instant.now()));
-					p.setDescription("Beer and Boobs home party");
-                    p.setUsers(generateUsers());
-                    p.setOrganizer(generateOrganizers().get(0));
-					p.setLocation(generateLocation().get(0));
+		PartyEntity p = new PartyEntity();
+		p.setPartyType(PartyType.TYPICAL);
+		p.setHashtagBox("#homeparty");
+		p.setDate(Date.from(Instant.now()));
+		p.setDescription("Beer and Boobs home party");
+		p.setUsers(generateUsers());
+		p.setOrganizer(generateOrganizers().get(0));
+		p.setLocation(generateLocation().get(0));
 
-					PartyEntity partyEntity = partyRepository.save(p);
+		p = partyRepository.save(p);
 
-					p.setTickets(partyService.generateTickets(partyEntity.getLocation().getAttendersLimit(),25.0,partyEntity));
-				}
-		);
+		p.setTickets(partyService.generateTickets(p.getLocation().getAttendersLimit(),25.0, p));
+
+		partyRepository.save(p);
 	}
 
 	private List<UserEntity> generateUsers() {
